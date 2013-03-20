@@ -1,18 +1,26 @@
+'''
+Startup progetto
+'''
 from admin import admin
 from api import api
 from app import app
 from models import *
+from services import *
 import os
 
-
+"Imposta path di avvio progetto"
 abspath = os.path.abspath(__file__)
 dname = os.path.dirname(abspath)
 os.chdir(dname)
 
+"Configura console di amministrazione e modulo per effettuare le chiamate Restful"
 admin.setup()
 api.setup()
 
 def createTables():
+    '''
+    Crea tabelle
+    '''
     User.create_table(fail_silently=True)
     Device.create_table(fail_silently=True)
 

@@ -1,3 +1,6 @@
+'''
+Modulo gestione chiamate Restful
+'''
 from app import app
 from auth import auth
 from flask_peewee.rest import RestAPI, RestResource, UserAuthentication, \
@@ -5,20 +8,20 @@ from flask_peewee.rest import RestAPI, RestResource, UserAuthentication, \
 from models import User, Device
 
 
+class UserResource(RestResource):
+    '''
+    Gestione risorse User
+    Consente di configurare i campi esportati nel json
+    '''
+    exclude = ('password', 'email',)
+
+"Configura Authenticator per User e Admin"
 user_auth = UserAuthentication(auth)
 admin_auth = AdminAuthentication(auth)
 
+"Crea oggetto API per la gestione delle chiamate Restful"
 api = RestAPI(app, default_auth=user_auth)
 
-
-class UserResource(RestResource):
-    exclude = ('password', 'email',)
-
-
-class DeviceResource(RestResource):
-    owner_field = 'user'
-    include_resources = {'user': UserResource}
-
-
+"Registra Modelli"
 api.register(User, UserResource, auth=admin_auth)
 api.register(Device)

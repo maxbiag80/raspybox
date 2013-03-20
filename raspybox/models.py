@@ -1,10 +1,16 @@
-import datetime
+'''
+Modelli
+'''
+from app import db
 from flask_peewee.auth import BaseUser
 from peewee import *
-from app import db
+import datetime
 
 
 class User(db.Model, BaseUser):
+    '''
+    Utente
+    '''
     username = CharField()
     password = CharField()
     email = CharField()
@@ -17,6 +23,9 @@ class User(db.Model, BaseUser):
 
 
 class Device(db.Model):
+    '''
+    Dispositivo
+    '''
     name = CharField()
     pin = IntegerField()
     
