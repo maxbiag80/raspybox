@@ -22,7 +22,7 @@ def createTables():
     Crea tabelle
     '''
     User.create_table(fail_silently=True)
-    Device.create_table(fail_silently=True)
+    Relay.create_table(fail_silently=True)
 
 
 if __name__ == '__main__':

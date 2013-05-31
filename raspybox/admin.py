@@ -5,18 +5,18 @@ Accesso all'area admin: http://localhost:8080/admin
 from app import app
 from auth import auth
 from flask_peewee.admin import Admin, ModelAdmin
-from models import Device
+from models import Relay
 
 
-class DeviceAdmin(ModelAdmin):
+class RelayAdmin(ModelAdmin):
     '''
-    Amministrazione Model Device
+    Amministrazione Model Relay
     '''
-    columns = ('name', 'pin',)
+    columns = ('channel', 'device', 'active',)
 
 "Crea oggetto Admin associandolo ad un'Authenticator"
 admin = Admin(app, auth)
 auth.register_admin(admin)
 
 "Registra Model"
-admin.register(Device, DeviceAdmin)
+admin.register(Relay, RelayAdmin)

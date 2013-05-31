@@ -1,12 +1,12 @@
 '''
 Modulo gestione chiamate Restful
-Es.: http://localhost:8080/api/device/
+Es.: http://localhost:8080/api/relay/
 '''
 from app import app
 from auth import auth
 from flask_peewee.rest import RestAPI, RestResource, UserAuthentication, \
     AdminAuthentication
-from models import User, Device
+from models import User, Relay
 
 
 class UserResource(RestResource):
@@ -25,4 +25,4 @@ api = RestAPI(app, default_auth=user_auth)
 
 "Registra Modelli"
 api.register(User, UserResource, auth=admin_auth)
-api.register(Device)
+api.register(Relay)

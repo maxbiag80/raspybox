@@ -22,12 +22,13 @@ class User(db.Model, BaseUser):
         return self.username
 
 
-class Device(db.Model):
+class Relay(db.Model):
     '''
-    Dispositivo
+    Relay
     '''
-    name = CharField()
-    pin = IntegerField()
+    channel = IntegerField()
+    device = CharField()
+    active = BooleanField(default=True)
     
     def __unicode__(self):
-        return self.name
+        return self.channel + ":" + self.device
