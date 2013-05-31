@@ -1,5 +1,6 @@
 '''
 Modulo gestione chiamate Restful
+Es.: http://localhost:8080/api/device/
 '''
 from app import app
 from auth import auth

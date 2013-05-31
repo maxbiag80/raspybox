@@ -1,5 +1,6 @@
 '''
 Modulo di Amministrazione
+Accesso all'area admin: http://localhost:8080/admin
 '''
 from app import app
 from auth import auth
