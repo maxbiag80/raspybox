@@ -5,7 +5,7 @@ from admin import admin
 from api import api
 from app import app
 from models import *
-from services import *
+from routes import *
 import os
 
 "Imposta path di avvio progetto"

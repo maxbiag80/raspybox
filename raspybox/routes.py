@@ -1,5 +1,5 @@
 '''
-Web Services
+Routing
 '''
 from app import app
 from flask import send_from_directory
@@ -7,6 +7,9 @@ import os.path
 
 @app.route('/favicon.ico')
 def favicon():
+    '''
+    Favicon
+    '''
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
     
 @app.route("/test/<signal>")
