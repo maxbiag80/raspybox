@@ -2,8 +2,13 @@
 Web Services
 '''
 from app import app
+from flask import send_from_directory
+import os.path
 
-
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico')
+    
 @app.route("/test/<signal>")
 def test(signal):
     '''
