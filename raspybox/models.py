@@ -31,4 +31,5 @@ class Relay(db.Model):
     active = BooleanField(default=True)
     
     def __unicode__(self):
-        return self.channel + ":" + self.device
+        """return self.channel + ":" + self.device"""
+        return self.device

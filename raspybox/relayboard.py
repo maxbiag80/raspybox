@@ -1,3 +1,5 @@
+from models import Relay
+
 class RelayBoard:
     '''
     Relay Board Manager
@@ -21,4 +23,10 @@ class RelayBoard:
         Get Relay Status
         @return status(0=Off, 1=On) 
         '''
-        return "Get relay status on channel %d" % int(channel)
+        self.__relays = Relay.select()
+        for relay in self.__relays:
+            if (relay.channel == int(channel)):
+                return "Relay: %s" % relay.device
+         
+#         return "Get relay status on channel %d" % int(channel)
+        
