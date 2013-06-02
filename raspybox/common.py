@@ -1,0 +1,2 @@
+"COSTANTI"
+MODULE_RELAY_BOARD = "relay-board"
