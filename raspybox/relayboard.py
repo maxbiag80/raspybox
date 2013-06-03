@@ -4,6 +4,7 @@ class RelayBoard:
     '''
     Relay Board Manager
     '''
+    
     def powerOn(self, channel):
         '''
         Power On Relay
