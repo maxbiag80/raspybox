@@ -3,7 +3,7 @@ Startup progetto
 '''
 from admin import admin
 from api import api
-from app import app
+from app import app, registerModule
 from common import *
 from models import *
 from relayboard import RelayBoard
@@ -31,7 +31,7 @@ def initModules():
     '''
     Inizializza moduli applicazione
     '''
-    app.modules[MODULE_RELAY_BOARD] = RelayBoard()
+    registerModule(MODULE_RELAY_BOARD, RelayBoard())    
 
 if __name__ == '__main__':
     createTables()
