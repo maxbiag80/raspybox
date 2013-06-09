@@ -31,12 +31,3 @@ def powerOff(channel):
     '''
     relayBoard = appModules[MODULE_RELAY_BOARD]
     return relayBoard.powerOff(channel);
-
-@app.route("/status/<channel>")
-def status(channel):
-    '''
-    Get Relay Status
-    @return status(0=Off, 1=On) 
-    '''
-    relayBoard = appModules[MODULE_RELAY_BOARD]
-    return relayBoard.status(channel);
