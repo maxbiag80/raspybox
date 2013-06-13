@@ -4,6 +4,7 @@ Routing
 from app import app, appModules
 from common import *
 from flask import send_from_directory
+from flask.helpers import jsonify
 import os.path
 
 
@@ -20,8 +21,8 @@ def powerOn(channel):
     Power on relay
     @param channel: canale 
     '''
-    relayBoard = appModules[MODULE_RELAY_BOARD]
-    return relayBoard.powerOn(channel);
+    relayBoard = appModules[MODULE_RELAY_BOARD]    
+    return jsonify(result = relayBoard.powerOn(channel))
 
 @app.route("/poweroff/<channel>")
 def powerOff(channel):
@@ -30,4 +31,4 @@ def powerOff(channel):
     @param channel: canale 
     '''
     relayBoard = appModules[MODULE_RELAY_BOARD]
-    return relayBoard.powerOff(channel);
+    return jsonify(result = relayBoard.powerOff(channel));
