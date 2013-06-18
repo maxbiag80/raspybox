@@ -9,6 +9,10 @@ class RelayBoard:
     Relay Board Manager
     '''
     
+    def __init__(self):
+        self.__sf = SerialFactory();
+        self.__ser = self.__sf.getSerial(RELAY_BOARD_COM_PORT)
+    
     def powerOn(self, channel):
         '''
         Power On Relay
@@ -56,9 +60,6 @@ class RelayBoard:
         return False
     
     def __sendCommand(self, channel, command):
-        sf = SerialFactory();
-        ser = sf.getSerial(RELAY_BOARD_COM_PORT)
-        
         """
         Comandi:
         
@@ -79,12 +80,13 @@ class RelayBoard:
         First byte is status first relay, Fourth byte is status fourth relay
         """                                          
         if (STATUS == command):
-            buffer = ser.write(chr(255) + chr(command) + chr(0))
+            buffer = self.__ser.write(chr(255) + chr(command) + chr(0))
             return self.__parseStatus(buffer, channel);
         else:
-            ser.write(chr(255) + chr(channel) + chr(command))
+            self.__ser.write(chr(255) + chr(channel) + chr(command))
         
-        ser.close()
+        self.__ser.close()
     
     def __parseStatus(self, buffer, channel):
-        return 1;
+        encoded = buffer.encode('hex')
+        return int(encoded[channel * 2 - 1])
