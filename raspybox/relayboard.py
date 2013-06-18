@@ -1,5 +1,6 @@
 from common import *
 from models import Relay
+from serialfactory import SerialFactory
 import serial
 
 
@@ -55,7 +56,8 @@ class RelayBoard:
         return False
     
     def __sendCommand(self, channel, command):
-        "ser = serial.Serial(RELAY_BOARD_COM_PORT)"
+        sf = SerialFactory();
+        ser = sf.getSerial(RELAY_BOARD_COM_PORT)
         
         """
         Comandi:
@@ -77,13 +79,12 @@ class RelayBoard:
         First byte is status first relay, Fourth byte is status fourth relay
         """                                          
         if (STATUS == command):
-            "buffer = ser.read(chr(255) + chr(command) + chr(0));"
-            buffer = "0000"
+            buffer = ser.write(chr(255) + chr(command) + chr(0))
             return self.__parseStatus(buffer, channel);
         else:
-            "ser.write(chr(255) + chr(channel) + chr(command))"
+            ser.write(chr(255) + chr(channel) + chr(command))
         
-        "ser.close()"
+        ser.close()
     
     def __parseStatus(self, buffer, channel):
         return 1;
