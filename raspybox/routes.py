@@ -32,3 +32,12 @@ def powerOff(channel):
     '''
     relayBoard = appModules[MODULE_RELAY_BOARD]
     return jsonify(result = relayBoard.powerOff(channel));
+
+@app.route("/status/<channel>")
+def status(channel):
+    '''
+    Get relay status
+    @param channel: canale 
+    '''
+    relayBoard = appModules[MODULE_RELAY_BOARD]
+    return jsonify(result = relayBoard.status(channel));
